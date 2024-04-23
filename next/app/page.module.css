@@ -1,0 +1,15 @@
+.peep {
+  /* centering */
+  margin: 0 auto;
+
+  /* sizing */
+  width: 960px;
+
+  /* for inner slider */
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  column-gap: 50px;
+}
