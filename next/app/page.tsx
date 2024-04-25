@@ -13,6 +13,7 @@ export default function Home() {
               src={`/images/background (${n}).png`}
               width={960}
               height={540}
+              priority
               alt={`background ${n}`}
             />
           ))}
