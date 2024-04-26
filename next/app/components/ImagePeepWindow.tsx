@@ -5,7 +5,7 @@ import { ImageSlider } from "./ImageSlider";
 
 interface Props {
   currentPage: number;
-  imageStates: ImageState[];
+  imageStates: ImageState[]; //TODO: without isLoaded and preLoad
 }
 
 export function ImagePeepWindow(props: Props) {

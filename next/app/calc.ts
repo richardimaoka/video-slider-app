@@ -1,9 +1,13 @@
+export type ImageProp = { toPreload: boolean };
+
 export type ImageState = {
-  index: number;
-  isPreload: boolean;
+  id: string;
+  toPreload: boolean;
   isLoaded: boolean;
   loading: "lazy" | "eager";
 };
+
+function mergeImageState(props: ImageProp[], states: ImageState[]) {}
 
 function imagesNotLoadedYet(images: ImageState[]): ImageState[] {
   return [];

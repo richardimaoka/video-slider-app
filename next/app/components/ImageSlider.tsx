@@ -10,7 +10,7 @@ export function ImageSlider(props: Props) {
   return (
     <div className={styles.component}>
       {props.images.map((i) => (
-        <Image key={i.index} src="" alt="" width={0} height={0} />
+        <Image key={i.id} src="" alt="" width={0} height={0} />
       ))}
     </div>
   );
