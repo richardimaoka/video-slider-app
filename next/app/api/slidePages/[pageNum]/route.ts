@@ -1,13 +1,13 @@
-import fsPromises from "fs/promises";
-import { SlidePage } from "../../types";
+import { readPages } from "../read";
 const slidePagesPath = "/api/slidePages";
 
 export async function GET(
   request: Request,
   { params }: { params: { pageNum: string } }
 ) {
+  console.log("GET STAERTED");
+  // Validate the request path
   const pageNum = Number(params.pageNum);
-
   if (isNaN(pageNum)) {
     return new Response(
       `request path = '${slidePagesPath}/${params.pageNum}' has non-numeric path segment = '${params.pageNum}'`,
@@ -25,26 +25,19 @@ export async function GET(
     );
   }
 
-  // Read pages from file
-  const fileContents = await fsPromises
-    .readFile(process.cwd() + "/app" + slidePagesPath + "/pages.json", "utf8")
-    .catch((error) => {
-      console.log(error);
-      return new Error("some error happened");
-    });
-  if (fileContents instanceof Error) {
-    return new Response(`internal error`, { status: 500 });
-  }
-
-  // Needs to be `let` for a grammatical reason, but assume it's like const, which doesn't change
-  let pages: SlidePage[];
-  try {
-    pages = JSON.parse(fileContents);
-  } catch (error) {
+  console.log("GET IN THE MIDDLE");
+  // Read the data
+  const pages = await readPages().catch((error) => {
     console.log(error);
-    return new Response(`internal error`, { status: 500 });
+    return new Error("failed to read pages");
+  });
+  if (pages instanceof Error) {
+    return new Response(`internal error happned upon reading pages`, {
+      status: 500,
+    });
   }
 
+  console.log("GET CLOSE TO END");
   if (pageNum > pages.length) {
     return new Response(
       `request path = '${slidePagesPath}/${params.pageNum}' has page number = ${params.pageNum}, but exceeds the max page = ${pages.length}`,
