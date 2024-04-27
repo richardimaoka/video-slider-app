@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { SlidePage } from "./types";
+import { SlidePage } from "../types";
 
 export async function GET() {
   const fileContents = readFileSync(
