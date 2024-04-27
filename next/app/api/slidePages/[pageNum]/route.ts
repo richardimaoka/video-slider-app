@@ -5,7 +5,6 @@ export async function GET(
   request: Request,
   { params }: { params: { pageNum: string } }
 ) {
-  console.log("GET STAERTED");
   // Validate the request path
   const pageNum = Number(params.pageNum);
   if (isNaN(pageNum)) {
@@ -25,7 +24,6 @@ export async function GET(
     );
   }
 
-  console.log("GET IN THE MIDDLE");
   // Read the data
   const pages = await readPages().catch((error) => {
     console.log(error);
@@ -37,7 +35,6 @@ export async function GET(
     });
   }
 
-  console.log("GET CLOSE TO END");
   if (pageNum > pages.length) {
     return new Response(
       `request path = '${slidePagesPath}/${params.pageNum}' has page number = ${params.pageNum}, but exceeds the max page = ${pages.length}`,
