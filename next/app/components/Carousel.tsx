@@ -11,13 +11,9 @@ interface Props {
 }
 
 export function Carousel(props: Props) {
-  // Initialize the state upon initial rendering
-  const [currentPage, setCurrentPage] = useState(props.currentPage);
-  const currentPageNum = currentPage.pageNum;
+  const currentPageNum = props.currentPage.pageNum;
   const lastPageNum = props.allPages.length;
 
-  console.log(currentPageNum, 1, currentPageNum > 1);
-  console.log(currentPageNum, lastPageNum, currentPageNum < lastPageNum );
   return (
     <div className={styles.component}>
       {currentPageNum > 1 && (
