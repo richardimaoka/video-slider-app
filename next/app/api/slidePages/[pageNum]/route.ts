@@ -1,6 +1,5 @@
-import { readFileSync } from "fs";
+import fsPromises from "fs/promises";
 import { SlidePage } from "../../types";
-
 const slidePagesPath = "/api/slidePages";
 
 export async function GET(
@@ -26,11 +25,25 @@ export async function GET(
     );
   }
 
-  const fileContents = readFileSync(
-    process.cwd() + "/app" + slidePagesPath + "/pages.json",
-    "utf8"
-  );
-  const pages: SlidePage[] = JSON.parse(fileContents);
+  // Read pages from file
+  const fileContents = await fsPromises
+    .readFile(process.cwd() + "/app" + slidePagesPath + "/pages.json", "utf8")
+    .catch((error) => {
+      console.log(error);
+      return new Error("some error happened");
+    });
+  if (fileContents instanceof Error) {
+    return new Response(`internal error`, { status: 500 });
+  }
+
+  // Needs to be `let` for a grammatical reason, but assume it's like const, which doesn't change
+  let pages: SlidePage[];
+  try {
+    pages = JSON.parse(fileContents);
+  } catch (error) {
+    console.log(error);
+    return new Response(`internal error`, { status: 500 });
+  }
 
   if (pageNum > pages.length) {
     return new Response(
