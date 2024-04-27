@@ -12,5 +12,5 @@ export async function GET() {
     });
   }
 
-  return Response.json({ pages });
+  return Response.json(pages);
 }

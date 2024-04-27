@@ -44,5 +44,5 @@ export async function GET(
 
   const page = pages[pageNum - 1];
 
-  return Response.json({ page });
+  return Response.json(page);
 }

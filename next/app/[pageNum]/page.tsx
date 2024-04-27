@@ -7,14 +7,18 @@ interface Props {
 }
 
 async function getPages() {
-  const res = await fetch("http://localhost:3000/api/slidePages");
+  const res = await fetch("http://localhost:3000/api/slidePages", {
+    cache: "no-store",
+  });
   const pages = (await res.json()) as SlidePage[];
 
   return pages;
 }
 
 async function getCurrentPage(pageNum: string) {
-  const res = await fetch(`http://localhost:3000/api/slidePages/${pageNum}`);
+  const res = await fetch(`http://localhost:3000/api/slidePages/${pageNum}`, {
+    cache: "no-store",
+  });
   const page = (await res.json()) as SlidePage;
 
   return page;
