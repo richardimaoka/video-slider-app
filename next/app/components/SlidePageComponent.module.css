@@ -1,4 +1,8 @@
 .component {
+  /* parent's `display: flex` makes this width calculated = intrinsic + adjustment, but force it to extrinsic, determined by the parent width */
+  width: 100%;
+  flex-shrink: 0;
+
   position: relative;
 }
 
@@ -19,6 +23,6 @@
 
 .image {
   display: block;
-  width: 1080px;
+  width: 100%;
   height: auto;
 }
