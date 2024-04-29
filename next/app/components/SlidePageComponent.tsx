@@ -25,8 +25,8 @@ export function SlidePageComponent(props: Props) {
         className={styles.image}
         src={props.imagePath}
         alt={`page ${props.pageNum} image`}
-        width={960}
-        height={540}
+        width={1920}
+        height={1080}
         onLoad={onLoad}
         placeholder="blur"
         blurDataURL="/images/loading.png"
