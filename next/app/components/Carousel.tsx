@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
-import Link from "next/link";
+import { NextButton } from "./NextButton";
+import { PrevButton } from "./PrevButton";
 
 interface Props {
   currentPage: SlidePage;
@@ -14,18 +14,15 @@ export function Carousel(props: Props) {
   const currentPageNum = props.currentPage.pageNum;
   const lastPageNum = props.allPages.length;
 
+  // Page num starts from 1, not 0
+  const drawPrevButton = currentPageNum > 1;
+  const drawNextButton = currentPageNum < lastPageNum;
+
   return (
     <div className={styles.component}>
-      {currentPageNum > 1 && (
-        <Link href={`/${currentPageNum - 1}`}>
-          <button type="button">prev</button>
-        </Link>
-      )}
-      {currentPageNum < lastPageNum && (
-        <Link href={`/${currentPageNum + 1}`}>
-          <button type="button">next</button>
-        </Link>
-      )}
+      <div>{currentPageNum}</div>
+      {drawPrevButton && <PrevButton prevPageNum={currentPageNum - 1} />}
+      {drawNextButton && <NextButton nextPageNum={currentPageNum + 1} />}
     </div>
   );
 }
