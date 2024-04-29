@@ -1,9 +1,4 @@
 .component {
-  display: flex;
-  column-gap: 20px;
-}
-
-.page {
   position: relative;
 }
 
