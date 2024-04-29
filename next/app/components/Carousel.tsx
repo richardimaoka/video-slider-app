@@ -4,6 +4,7 @@ import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
 import { HorizontalPages } from "./HorizontalPages";
 import { NextButton } from "./NextButton";
+import { PageWindow } from "./PageWindow";
 import { PrevButton } from "./PrevButton";
 
 interface Props {
@@ -16,18 +17,15 @@ export function Carousel(props: Props) {
   const lastPageNum = props.allPages.length;
 
   // Page num starts from 1, not 0
-  const drawPrevButton = currentPageNum > 1;
-  const drawNextButton = currentPageNum < lastPageNum;
+  const hasPrevPage = currentPageNum > 1;
+  const hasNextPage = currentPageNum < lastPageNum;
 
   return (
     <div className={styles.component}>
-      <div className={styles.window}>
-        {currentPageNum}
-        <HorizontalPages images={props.allPages} />
-      </div>
+      <PageWindow currentPageNum={currentPageNum} allPages={props.allPages} />
       <div className={styles.buttons}>
-        {drawPrevButton && <PrevButton prevPageNum={currentPageNum - 1} />}
-        {drawNextButton && <NextButton nextPageNum={currentPageNum + 1} />}
+        <PrevButton prevPageNum={currentPageNum - 1} disabled={!hasPrevPage} />
+        <NextButton nextPageNum={currentPageNum + 1} disabled={!hasNextPage} />
       </div>
     </div>
   );

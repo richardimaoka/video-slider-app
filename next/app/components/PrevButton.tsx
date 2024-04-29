@@ -7,6 +7,7 @@ import Link from "next/link";
 
 interface Props {
   prevPageNum: number;
+  disabled?: boolean;
 }
 
 export function PrevButton(props: Props) {
@@ -14,7 +15,9 @@ export function PrevButton(props: Props) {
 
   return (
     <Link href={prevPath}>
-      <button type="button">prev</button>
+      <button type="button" disabled={props.disabled}>
+        prev
+      </button>
     </Link>
   );
 }

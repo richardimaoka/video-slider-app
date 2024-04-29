@@ -3,18 +3,21 @@
 import Link from "next/link";
 // import { useEffect, useState } from "react";
 // import { useRouter } from "next/navigation";
-// import styles from "./NextButton.module.css";
+import styles from "./NextButton.module.css";
 
 interface Props {
   nextPageNum: number;
+  disabled?: boolean;
 }
 
 export function NextButton(props: Props) {
   const nextPath = `/${props.nextPageNum}`;
 
   return (
-    <Link href={nextPath}>
-      <button type="button">next</button>
+    <Link className={styles.component} href={nextPath}>
+      <button type="button" disabled={props.disabled}>
+        next
+      </button>
     </Link>
   );
 
