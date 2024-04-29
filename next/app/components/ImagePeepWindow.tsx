@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SlidePage } from "../api/types";
 import styles from "./ImagePeepWindow.module.css";
-import { ImageSlider } from "./ImageSlider";
+import { HorizontalImages } from "./HorizontalImages";
 import { nextImgToLoad } from "../calc";
 
 interface Props {
@@ -28,7 +28,7 @@ export function ImagePeepWindow(props: Props) {
 
   return (
     <div className={styles.component}>
-      <ImageSlider images={imageStates} />
+      <HorizontalImages images={imageStates} />
     </div>
   );
 }

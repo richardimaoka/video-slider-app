@@ -2,7 +2,7 @@
 
 import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
-import { ImageSlider } from "./ImageSlider";
+import { HorizontalImages } from "./HorizontalImages";
 import { NextButton } from "./NextButton";
 import { PrevButton } from "./PrevButton";
 
@@ -21,9 +21,9 @@ export function Carousel(props: Props) {
 
   return (
     <div className={styles.component}>
-      <div>
+      <div className={styles.window}>
         {currentPageNum}
-        <ImageSlider images={props.allPages} />
+        <HorizontalImages images={props.allPages} />
       </div>
       <div className={styles.buttons}>
         {drawPrevButton && <PrevButton prevPageNum={currentPageNum - 1} />}
