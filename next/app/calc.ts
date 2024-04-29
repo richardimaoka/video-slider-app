@@ -1,23 +1,23 @@
 export type ImageProp = { toPreload: boolean };
 
-export type ImageState = {
+export type SlidePage = {
   id: string;
   toPreload: boolean;
   isLoaded: boolean;
   loading: "lazy" | "eager";
 };
 
-function mergeImageState(props: ImageProp[], states: ImageState[]) {}
+function mergeImageState(props: ImageProp[], states: SlidePage[]) {}
 
-function imagesNotLoadedYet(images: ImageState[]): ImageState[] {
+function imagesNotLoadedYet(images: SlidePage[]): SlidePage[] {
   return [];
 }
 
 // sort images by distance from the current image
 function sortImages(
   currentImgIndex: number,
-  images: ImageState[]
-): ImageState[] {
+  images: SlidePage[]
+): SlidePage[] {
   const expanded = images.map((img, index) => ({ ...img, index: index }));
   expanded.sort(
     (a, b) =>
@@ -30,8 +30,8 @@ function sortImages(
 
 export function nextImgToLoad(
   currentImgIndex: number,
-  images: ImageState[]
-): ImageState | null {
+  images: SlidePage[]
+): SlidePage | null {
   const notLoadedImages = imagesNotLoadedYet(images);
   const sortedImages = sortImages(currentImgIndex, notLoadedImages);
 

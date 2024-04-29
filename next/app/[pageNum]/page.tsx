@@ -25,6 +25,7 @@ async function getCurrentPage(pageNum: string) {
 }
 
 export default async function Page(props: Props) {
+  console.log(`rendering ${props.params.pageNum}`);
   const pages = await getPages().catch((error) => {
     console.log("error upon page rendering");
     console.log(error);
@@ -45,5 +46,9 @@ export default async function Page(props: Props) {
     throw new Error("error from getCurrentPage()");
   }
 
-  return <Carousel currentPage={currentPage} allPages={pages} />;
+  return (
+    <div className={styles.component}>
+      <Carousel currentPage={currentPage} allPages={pages} />
+    </div>
+  );
 }

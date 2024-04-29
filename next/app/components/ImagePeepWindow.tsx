@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { ImageState, nextImgToLoad } from "../calc";
+import { SlidePage } from "../api/types";
 import styles from "./ImagePeepWindow.module.css";
 import { ImageSlider } from "./ImageSlider";
+import { nextImgToLoad } from "../calc";
 
 interface Props {
   currentPage: number;
-  imageStates: ImageState[]; //TODO: without isLoaded and preLoad
+  imageStates: SlidePage[]; //TODO: without isLoaded and preLoad
 }
 
 export function ImagePeepWindow(props: Props) {
   // use state
-  const [imageStates, setImageStates] = useState<ImageState[]>([]);
+  const [imageStates, setImageStates] = useState<SlidePage[]>([]);
 
   // upon load complete,
   function onLoadImgCompleted() {}
