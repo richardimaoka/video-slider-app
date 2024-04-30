@@ -17,7 +17,6 @@ export function NextButton(props: Props) {
   const [isLoading, setIsLoading] = useState(true);
 
   function onClick() {
-    console.log("onClick")
     if (ref.current) {
       // https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#using-the-native-history-api
       // > Next.js allows you to use the native window.history.pushState and window.history.replaceState methods to update the browser's history stack without reloading the page.

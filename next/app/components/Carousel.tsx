@@ -21,13 +21,17 @@ export function Carousel(props: Props) {
   const hasNextPage = currentPageNum < lastPageNum;
 
   useEffect(() => {
+    function onPrevPage() {
+      setCurrentPageNum(currentPageNum - 1);
+    }
     function onNextPage() {
-      console.log("onNextPage triggered");
       setCurrentPageNum(currentPageNum + 1);
     }
 
+    window.addEventListener("prevpage", onPrevPage);
     window.addEventListener("nextpage", onNextPage);
     return () => {
+      window.removeEventListener("prevpage", onPrevPage);
       window.removeEventListener("nextpage", onNextPage);
     };
   }, [currentPageNum]);
