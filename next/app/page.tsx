@@ -55,7 +55,7 @@ export default async function Page(props: Props) {
 
   return (
     <div className={styles.component}>
-      <Carousel currentPage={currentPage} allPages={pages} />
+      <Carousel currentPageNum={currentPage.pageNum} allPages={pages} />
     </div>
   );
 }
