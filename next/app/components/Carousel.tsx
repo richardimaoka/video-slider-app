@@ -2,7 +2,6 @@
 
 import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
-import { HorizontalPages } from "./HorizontalPages";
 import { NextButton } from "./NextButton";
 import { PageWindow } from "./PageWindow";
 import { PrevButton } from "./PrevButton";

@@ -17,18 +17,18 @@ export function ImagePeepWindow(props: Props) {
   function onLoadImgCompleted() {}
 
   // upon load state change
-  useEffect(() => {
-    const nextImg = nextImgToLoad(props.currentPage, imageStates);
-    // const newStates = ...
-    // if ( nextImg ) {
-    //   newStates[nextImg] = ...
-    // }
-    // setImageStates(newStates)
-  }, [imageStates, props.currentPage]);
+  // useEffect(() => {
+  //   const nextImg = nextImgToLoad(props.currentPage, imageStates);
+  //   // const newStates = ...
+  //   // if ( nextImg ) {
+  //   //   newStates[nextImg] = ...
+  //   // }
+  //   // setImageStates(newStates)
+  // }, [imageStates, props.currentPage]);
 
   return (
     <div className={styles.component}>
-      <HorizontalPages images={imageStates} />
+      {/* <HorizontalPages images={imageStates} /> */}
     </div>
   );
 }
