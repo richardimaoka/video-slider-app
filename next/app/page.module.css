@@ -1,9 +1,9 @@
-.peep {
+.component {
   /* centering */
   margin: 0 auto;
 
   /* sizing */
-  width: 960px;
+  width: 1080px;
 
   /* for inner slider */
   overflow: hidden;

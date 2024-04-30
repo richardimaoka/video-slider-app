@@ -11,7 +11,8 @@ interface Props {
 }
 
 export function PrevButton(props: Props) {
-  const prevPath = `/${props.prevPageNum}`;
+  // const prevPath = `/${props.prevPageNum}`;
+  const prevPath = `?page=${props.prevPageNum}`;
 
   return (
     <Link href={prevPath}>

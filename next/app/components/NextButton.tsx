@@ -11,7 +11,8 @@ interface Props {
 }
 
 export function NextButton(props: Props) {
-  const nextPath = `/${props.nextPageNum}`;
+  // const nextPath = `/${props.nextPageNum}`;
+  const nextPath = `?page=${props.nextPageNum}`;
 
   return (
     <Link className={styles.component} href={nextPath}>

@@ -1,24 +1,61 @@
-import Image from "next/image";
+import { SlidePage } from "./api/types";
+import { Carousel } from "./components/Carousel";
 import styles from "./page.module.css";
 
-export default function Home() {
-  const arr = Array.from({ length: 10 }, (_, i) => i + 1);
+async function getPages() {
+  const res = await fetch("http://localhost:3000/api/slidePages", {
+    cache: "no-store",
+  });
+  const pages = (await res.json()) as SlidePage[];
+
+  return pages;
+}
+
+interface Props {
+  searchParams: { page?: string | string[] };
+}
+
+async function getCurrentPage(pageNum: number) {
+  const res = await fetch(`http://localhost:3000/api/slidePages/${pageNum}`, {
+    cache: "no-store",
+  });
+  const page = (await res.json()) as SlidePage;
+
+  return page;
+}
+
+export default async function Page(props: Props) {
+  // Validate the search param
+  let pageNum = Number(props.searchParams.page);
+  if (isNaN(pageNum)) {
+    pageNum = 1;
+  } else if (!Number.isInteger(pageNum)) {
+    pageNum = 1;
+  }
+
+  console.log(`rendering ${pageNum}`);
+
+  const pages = await getPages().catch((error) => {
+    console.log("error upon page rendering");
+    console.log(error);
+    return new Error("internal error happened");
+  });
+  if (pages instanceof Error) {
+    throw new Error("error from getPages()");
+  }
+
+  const currentPage = await getCurrentPage(pageNum).catch((error) => {
+    console.log("error upon page rendering");
+    console.log(error);
+    return new Error("internal error happened");
+  });
+  if (currentPage instanceof Error) {
+    throw new Error("error from getCurrentPage()");
+  }
+
   return (
-    <main>
-      <div className={styles.peep}>
-        <div className={styles.slider}>
-          {arr.map((n) => (
-            <Image
-              key={n}
-              src={`/images/background (${n}).png`}
-              width={960}
-              height={540}
-              priority
-              alt={`background ${n}`}
-            />
-          ))}
-        </div>
-      </div>
-    </main>
+    <div className={styles.component}>
+      <Carousel currentPage={currentPage} allPages={pages} />
+    </div>
   );
 }
