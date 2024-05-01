@@ -43,11 +43,13 @@ export function Carousel(props: Props) {
   }
 
   function onPageLoaded(pageNum: number) {
-    const updated = allPagesExtended.map((e) => ({ ...e }));
-    if (0 < pageNum && pageNum < allPagesExtended.length) {
-      updated[pageNum - 1].isLoaded = true;
-    }
-    setAllPagesExtended(updated);
+    setAllPagesExtended((allPages) => {
+      const updated = allPages.map((e) => ({ ...e }));
+      if (0 < pageNum && pageNum < allPages.length) {
+        updated[pageNum - 1].isLoaded = true;
+      }
+      return updated;
+    });
   }
 
   return (
