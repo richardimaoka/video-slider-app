@@ -25,6 +25,7 @@ async function getCurrentPage(pageNum: number) {
 }
 
 export default async function Page(props: Props) {
+  console.log("rendering Page");
   // Validate the search param
   let pageNum = Number(props.searchParams.page);
   if (isNaN(pageNum)) {

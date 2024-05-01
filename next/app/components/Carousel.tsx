@@ -13,6 +13,7 @@ interface Props {
 }
 
 export function Carousel(props: Props) {
+  console.log("rendering Carousel");
   const [currentPageNum, setCurrentPageNum] = useState(props.currentPageNum);
   const lastPageNum = props.allPages.length;
 
@@ -20,6 +21,7 @@ export function Carousel(props: Props) {
   const hasPrevPage = currentPageNum > 1;
   const hasNextPage = currentPageNum < lastPageNum;
 
+  // Upon currentPageNum change,
   useEffect(() => {
     function onPrevPage() {
       setCurrentPageNum(currentPageNum - 1);
