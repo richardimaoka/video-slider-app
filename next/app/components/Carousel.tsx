@@ -8,7 +8,6 @@ import { NextButton } from "./NextButton";
 import { PrevButton } from "./PrevButton";
 
 type SlidePageExtended = SlidePage & {
-  priority: boolean;
   eager?: boolean;
   isLoaded: boolean;
 };
@@ -36,25 +35,11 @@ export function Carousel(props: Props) {
   const nextPath = `?page=${currentPageNum + 1}`;
 
   function onPrevPage() {
-    // update state
-    const prevPage = currentPageNum - 1;
-    const updatedPages = allPagesExtended.map((e) => ({ ...e }));
-    if (0 < prevPage && prevPage < allPagesExtended.length) {
-      updatedPages[prevPage - 1].priority = true;
-    }
-    setAllPagesExtended(updatedPages);
-    setCurrentPageNum(prevPage);
+    setCurrentPageNum(currentPageNum - 1);
   }
 
   function onNextPage() {
-    // update state
-    const nextPage = currentPageNum + 1;
-    const updatedPages = allPagesExtended.map((e) => ({ ...e }));
-    if (0 < nextPage && nextPage < allPagesExtended.length) {
-      updatedPages[nextPage - 1].priority = true;
-    }
-    setAllPagesExtended(updatedPages);
-    setCurrentPageNum(nextPage);
+    setCurrentPageNum(currentPageNum + 1);
   }
 
   function onPageLoaded(pageNum: number) {
