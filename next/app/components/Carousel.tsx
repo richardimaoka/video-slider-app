@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
-import { HorizontalPages } from "./HorizontalPages";
+import { CarouselPages } from "./CarouselPages";
 import { NextButton } from "./NextButton";
 import { PrevButton } from "./PrevButton";
 
@@ -52,10 +52,7 @@ export function Carousel(props: Props) {
 
   return (
     <div className={styles.component}>
-      <HorizontalPages
-        currentPageNum={currentPageNum}
-        images={props.allPages}
-      />
+      <CarouselPages currentPageNum={currentPageNum} images={props.allPages} />
       <div className={styles.buttons}>
         <PrevButton prevPageNum={currentPageNum - 1} disabled={!hasPrevPage} />
         <NextButton nextPageNum={currentPageNum + 1} disabled={!hasNextPage} />

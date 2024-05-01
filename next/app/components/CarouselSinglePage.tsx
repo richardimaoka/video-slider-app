@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import styles from "./SlidePageComponent.module.css";
+import styles from "./CarouselSinglePage.module.css";
 import Image from "next/image";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   priority: boolean;
 }
 
-export function SlidePageComponent(props: Props) {
+export function CarouselSinglePage(props: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
