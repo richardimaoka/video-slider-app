@@ -5,6 +5,7 @@ import Image from "next/image";
 interface Props {
   pageNum: number;
   imagePath: string;
+  priority: boolean;
 }
 
 export function SlidePageComponent(props: Props) {
@@ -28,6 +29,7 @@ export function SlidePageComponent(props: Props) {
         width={1920}
         height={1080}
         onLoad={onLoad}
+        // priority={props.priority}
         placeholder={loadingImageDataURL}
       />
     </div>

@@ -27,6 +27,7 @@ export function HorizontalPages(props: Props) {
           key={i.id}
           pageNum={i.pageNum}
           imagePath={i.imageUrl}
+          priority={props.currentPageNum === i.pageNum}
         />
       ))}
     </div>
