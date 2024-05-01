@@ -6,7 +6,7 @@ interface Props {
   pageNum: number;
   imagePath: string;
   priority: boolean;
-  onCurrentPageLoaded?: () => void;
+  onPageLoaded: (pageNum: number) => void;
 }
 
 export function CarouselSinglePage(props: Props) {
@@ -15,7 +15,7 @@ export function CarouselSinglePage(props: Props) {
 
   function onLoad() {
     setIsLoaded(true);
-    props.onCurrentPageLoaded && props.onCurrentPageLoaded();
+    props.onPageLoaded(props.pageNum);
   }
 
   return (
