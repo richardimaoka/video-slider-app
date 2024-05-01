@@ -1,7 +1,10 @@
-import Image from "next/image";
 import { SlidePage } from "../api/types";
 import styles from "./HorizontalPages.module.css";
 import { SlidePageComponent } from "./SlidePageComponent";
+
+export type SlidePageExtended = SlidePage & {
+  eager: boolean;
+};
 
 interface Props {
   currentPageNum: number;

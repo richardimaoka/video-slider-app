@@ -13,8 +13,6 @@ interface Props {
 }
 
 export function Carousel(props: Props) {
-  console.log("rendering Carousel");
-
   const [currentPageNum, setCurrentPageNum] = useState(props.currentPageNum);
   const lastPageNum = props.allPages.length;
 
@@ -23,7 +21,7 @@ export function Carousel(props: Props) {
   const hasNextPage = currentPageNum < lastPageNum;
 
   // Whether <Image> preload for currentPageNum is completed
-  const [isPreloadCompleted, setIsPreloadCompleted] = useState(false);
+  const [isCurrentPageLoaded, setIsCurrentPageLoaded] = useState(false);
 
   // Upon currentPageNum change,
   useEffect(() => {
@@ -34,7 +32,7 @@ export function Carousel(props: Props) {
       setCurrentPageNum(currentPageNum + 1);
     }
 
-    setIsPreloadCompleted(false);
+    setIsCurrentPageLoaded(false);
     window.addEventListener("prevpage", onPrevPage);
     window.addEventListener("nextpage", onNextPage);
     return () => {
@@ -47,7 +45,7 @@ export function Carousel(props: Props) {
   // Passing an empty dependency array - If your Effect truly doesn’t use any reactive values, it will only run after the initial render
   useEffect(() => {
     function onPreloadCompleted() {
-      setIsPreloadCompleted(true);
+      setIsCurrentPageLoaded(true);
     }
     window.addEventListener("preloadCompleted", onPreloadCompleted);
   }, []);

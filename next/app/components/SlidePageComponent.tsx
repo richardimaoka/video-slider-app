@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./SlidePageComponent.module.css";
 import Image from "next/image";
 
@@ -10,13 +10,19 @@ interface Props {
 
 export function SlidePageComponent(props: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   function onLoad() {
     setIsLoaded(true);
+
+    if (ref.current) {
+      const event = new Event("preloadCompleted", { bubbles: true });
+      ref.current.dispatchEvent(event);
+    }
   }
 
   return (
-    <div className={styles.component}>
+    <div className={styles.component} ref={ref}>
       {isLoaded && (
         <div className={styles.numberContainer}>
           <div className={styles.number}>{props.pageNum}</div>
