@@ -13,31 +13,20 @@ type SlidePageExtended = SlidePage & {
   isLoaded: boolean;
 };
 
-function extendPages(
-  pages: SlidePage[],
-  currentPageNum: number
-): SlidePageExtended[] {
-  return pages.map((page, i) => ({
-    ...page,
-    priority: i === currentPageNum - 1,
-    isLoaded: false,
-  }));
-}
-
 interface Props {
   initialPageNum: number;
-  allPages: SlidePage[];
+  initialAllPages: SlidePageExtended[];
 }
 
 export function Carousel(props: Props) {
   const [currentPageNum, setCurrentPageNum] = useState(props.initialPageNum);
-  const lastPageNum = props.allPages.length;
+  const lastPageNum = props.initialAllPages.length;
 
   const [allPagesExtended, setAllPagesExtended] = useState(
-    extendPages(props.allPages, currentPageNum)
+    props.initialAllPages
   );
 
-  console.log("Carousel", currentPageNum, allPagesExtended[currentPageNum - 1]);
+  console.log("Carousel", currentPageNum, allPagesExtended);
 
   // Page num starts from 1, not 0
   const hasPrevPage = currentPageNum > 1;
@@ -91,7 +80,7 @@ export function Carousel(props: Props) {
       <CarouselPages
         currentPageNum={currentPageNum}
         onPageLoaded={onPageLoaded}
-        images={props.allPages}
+        images={props.initialAllPages}
       />
       <div className={styles.buttons}>
         <PrevButton

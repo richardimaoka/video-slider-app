@@ -11,10 +11,6 @@ async function getPages() {
   return pages;
 }
 
-interface Props {
-  searchParams: { page?: string | string[] };
-}
-
 async function getCurrentPage(pageNum: number) {
   const res = await fetch(`http://localhost:3000/api/slidePages/${pageNum}`, {
     cache: "no-store",
@@ -22,6 +18,18 @@ async function getCurrentPage(pageNum: number) {
   const page = (await res.json()) as SlidePage;
 
   return page;
+}
+
+function extendPages(pages: SlidePage[], currentPageNum: number) {
+  return pages.map((page, i) => ({
+    ...page,
+    priority: i === currentPageNum - 1,
+    isLoaded: false,
+  }));
+}
+
+interface Props {
+  searchParams: { page?: string | string[] };
 }
 
 export default async function Page(props: Props) {
@@ -54,9 +62,14 @@ export default async function Page(props: Props) {
     throw new Error("error from getCurrentPage()");
   }
 
+  const extendedPages = extendPages(pages, currentPage.pageNum);
+
   return (
     <div className={styles.component}>
-      <Carousel initialPageNum={currentPage.pageNum} allPages={pages} />
+      <Carousel
+        initialPageNum={currentPage.pageNum}
+        initialAllPages={extendedPages}
+      />
     </div>
   );
 }
