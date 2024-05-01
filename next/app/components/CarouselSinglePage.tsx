@@ -2,12 +2,15 @@ import { useRef, useState } from "react";
 import styles from "./CarouselSinglePage.module.css";
 import Image from "next/image";
 
-interface Props {
+type Props = {
   pageNum: number;
   imagePath: string;
   priority: boolean;
+  eager?: boolean;
   onPageLoaded: (pageNum: number) => void;
-}
+};
+
+export type CarouselSinglePageProps = Props;
 
 export function CarouselSinglePage(props: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,7 +35,8 @@ export function CarouselSinglePage(props: Props) {
         width={1920}
         height={1080}
         onLoad={onLoad}
-        // priority={props.priority}
+        priority={props.priority}
+        loading={props.eager ? "eager" : undefined /* undefined = default */}
         placeholder={loadingImageDataURL}
       />
     </div>

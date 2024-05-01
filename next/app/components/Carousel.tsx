@@ -1,31 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
 import { CarouselPages } from "./CarouselPages";
 import { NextButton } from "./NextButton";
 import { PrevButton } from "./PrevButton";
 
-type SlidePageExtended = SlidePage & {
-  eager?: boolean;
+type SlidePageState = SlidePage & {
   isLoaded: boolean;
 };
 
 interface Props {
   initialPageNum: number;
-  initialAllPages: SlidePageExtended[];
+  initialAllPages: SlidePageState[];
 }
 
 export function Carousel(props: Props) {
   const [currentPageNum, setCurrentPageNum] = useState(props.initialPageNum);
   const lastPageNum = props.initialAllPages.length;
 
-  const [allPagesExtended, setAllPagesExtended] = useState(
-    props.initialAllPages
-  );
-
-  console.log("Carousel", currentPageNum, allPagesExtended);
+  // page array with loading state
+  const [allPages, setAllPages] = useState(props.initialAllPages);
 
   // Page num starts from 1, not 0
   const hasPrevPage = currentPageNum > 1;
@@ -43,14 +39,31 @@ export function Carousel(props: Props) {
   }
 
   function onPageLoaded(pageNum: number) {
-    setAllPagesExtended((allPages) => {
-      const updated = allPages.map((e) => ({ ...e }));
-      if (0 < pageNum && pageNum < allPages.length) {
-        updated[pageNum - 1].isLoaded = true;
+    // https://legacy.reactjs.org/docs/hooks-reference.html#functional-updates
+    setAllPages((priorAllPages) => {
+      const postAllPages = priorAllPages.map((e) => ({ ...e }));
+      if (0 < pageNum && pageNum < priorAllPages.length) {
+        postAllPages[pageNum - 1].isLoaded = true;
       }
-      return updated;
+      return postAllPages;
     });
   }
+
+  // With eager-loading settings
+  const isCurrentPageLoaded = allPages[currentPageNum - 1].isLoaded;
+  const allPagesToPassDown = isCurrentPageLoaded
+    ? allPages.map((x) => ({
+        ...x,
+        eager: Math.abs(currentPageNum - x.pageNum) < 5,
+      }))
+    : allPages;
+
+  console.log(
+    "Carousel",
+    isCurrentPageLoaded,
+    currentPageNum,
+    allPagesToPassDown
+  );
 
   return (
     <div className={styles.component}>

@@ -2,13 +2,13 @@ import { SlidePage } from "../api/types";
 import styles from "./CarouselPages.module.css";
 import { CarouselSinglePage } from "./CarouselSinglePage";
 
-export type SlidePageExtended = SlidePage & {
-  eager: boolean;
+type SlidePageState = SlidePage & {
+  eager?: boolean;
 };
 
 interface Props {
   currentPageNum: number;
-  images: SlidePage[];
+  images: SlidePageState[];
   onPageLoaded: (pageNum: number) => void;
 }
 
@@ -32,6 +32,7 @@ export function CarouselPages(props: Props) {
           pageNum={i.pageNum}
           imagePath={i.imageUrl}
           priority={props.currentPageNum === i.pageNum}
+          eager={i.eager}
           onPageLoaded={props.onPageLoaded}
         />
       ))}
