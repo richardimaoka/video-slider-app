@@ -20,25 +20,31 @@ export function Carousel(props: Props) {
   const hasPrevPage = currentPageNum > 1;
   const hasNextPage = currentPageNum < lastPageNum;
 
+  const prevPath = `?page=${currentPageNum - 1}`;
+  const nextPath = `?page=${currentPageNum + 1}`;
+
+  function onPrevPage() {
+    // https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#using-the-native-history-api
+    // > Next.js allows you to use the native window.history.pushState and window.history.replaceState methods to update the browser's history stack without reloading the page.
+    // Since <Link> and useRouter() both fetches RSC payloads from server, we need to use a native history API for pure-client routing, NOT to send anything to the server.
+    window.history.pushState(null, "", prevPath);
+    setCurrentPageNum(currentPageNum - 1);
+  }
+
+  function onNextPage() {
+    // https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#using-the-native-history-api
+    // > Next.js allows you to use the native window.history.pushState and window.history.replaceState methods to update the browser's history stack without reloading the page.
+    // Since <Link> and useRouter() both fetches RSC payloads from server, we need to use a native history API for pure-client routing, NOT to send anything to the server.
+    window.history.pushState(null, "", nextPath);
+    setCurrentPageNum(currentPageNum + 1);
+  }
+
   // Whether <Image> preload for currentPageNum is completed
   const [isCurrentPageLoaded, setIsCurrentPageLoaded] = useState(false);
 
   // Upon currentPageNum change,
   useEffect(() => {
-    function onPrevPage() {
-      setCurrentPageNum(currentPageNum - 1);
-    }
-    function onNextPage() {
-      setCurrentPageNum(currentPageNum + 1);
-    }
-
     setIsCurrentPageLoaded(false);
-    window.addEventListener("prevpage", onPrevPage);
-    window.addEventListener("nextpage", onNextPage);
-    return () => {
-      window.removeEventListener("prevpage", onPrevPage);
-      window.removeEventListener("nextpage", onNextPage);
-    };
   }, [currentPageNum]);
 
   // https://react.dev/reference/react/useEffect#passing-an-empty-dependency-array
@@ -54,8 +60,16 @@ export function Carousel(props: Props) {
     <div className={styles.component}>
       <CarouselPages currentPageNum={currentPageNum} images={props.allPages} />
       <div className={styles.buttons}>
-        <PrevButton prevPageNum={currentPageNum - 1} disabled={!hasPrevPage} />
-        <NextButton nextPageNum={currentPageNum + 1} disabled={!hasNextPage} />
+        <PrevButton
+          prevPath={prevPath}
+          onPrevPage={onPrevPage}
+          disabled={!hasPrevPage}
+        />
+        <NextButton
+          nextPath={nextPath}
+          onNextPage={onNextPage}
+          disabled={!hasNextPage}
+        />
       </div>
     </div>
   );
