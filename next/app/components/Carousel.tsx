@@ -47,18 +47,18 @@ export function Carousel(props: Props) {
     setIsCurrentPageLoaded(false);
   }, [currentPageNum]);
 
-  // https://react.dev/reference/react/useEffect#passing-an-empty-dependency-array
-  // Passing an empty dependency array - If your Effect truly doesn’t use any reactive values, it will only run after the initial render
-  useEffect(() => {
-    function onPreloadCompleted() {
-      setIsCurrentPageLoaded(true);
-    }
-    window.addEventListener("preloadCompleted", onPreloadCompleted);
-  }, []);
+  function onCurrentPageLoaded() {
+    console.log(`current = ${currentPageNum} loaded`)
+    setIsCurrentPageLoaded(true);
+  }
 
   return (
     <div className={styles.component}>
-      <CarouselPages currentPageNum={currentPageNum} images={props.allPages} />
+      <CarouselPages
+        currentPageNum={currentPageNum}
+        onCurrentPageLoaded={onCurrentPageLoaded}
+        images={props.allPages}
+      />
       <div className={styles.buttons}>
         <PrevButton
           prevPath={prevPath}

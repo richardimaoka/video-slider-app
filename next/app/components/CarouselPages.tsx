@@ -9,6 +9,7 @@ export type SlidePageExtended = SlidePage & {
 interface Props {
   currentPageNum: number;
   images: SlidePage[];
+  onCurrentPageLoaded: () => void;
 }
 
 export function CarouselPages(props: Props) {
@@ -31,6 +32,7 @@ export function CarouselPages(props: Props) {
           pageNum={i.pageNum}
           imagePath={i.imageUrl}
           priority={props.currentPageNum === i.pageNum}
+          onCurrentPageLoaded={props.onCurrentPageLoaded}
         />
       ))}
     </div>

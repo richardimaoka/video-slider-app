@@ -6,6 +6,7 @@ interface Props {
   pageNum: number;
   imagePath: string;
   priority: boolean;
+  onCurrentPageLoaded?: () => void;
 }
 
 export function CarouselSinglePage(props: Props) {
@@ -14,11 +15,7 @@ export function CarouselSinglePage(props: Props) {
 
   function onLoad() {
     setIsLoaded(true);
-
-    if (ref.current) {
-      const event = new Event("preloadCompleted", { bubbles: true });
-      ref.current.dispatchEvent(event);
-    }
+    props.onCurrentPageLoaded && props.onCurrentPageLoaded();
   }
 
   return (
