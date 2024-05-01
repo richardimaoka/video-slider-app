@@ -6,7 +6,7 @@ type Props = {
   pageNum: number;
   imagePath: string;
   priority: boolean;
-  eager?: boolean;
+  eager: boolean;
   onPageLoaded: (pageNum: number) => void;
 };
 
@@ -21,6 +21,7 @@ export function CarouselSinglePage(props: Props) {
     props.onPageLoaded(props.pageNum);
   }
 
+  console.log(props);
   return (
     <div className={styles.component} ref={ref}>
       {isLoaded && (

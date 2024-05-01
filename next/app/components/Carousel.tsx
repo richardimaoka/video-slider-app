@@ -51,12 +51,14 @@ export function Carousel(props: Props) {
 
   // With eager-loading settings
   const isCurrentPageLoaded = allPages[currentPageNum - 1].isLoaded;
-  const allPagesToPassDown = isCurrentPageLoaded
-    ? allPages.map((x) => ({
-        ...x,
-        eager: Math.abs(currentPageNum - x.pageNum) < 5,
-      }))
-    : allPages;
+  const adjacentPagesToEagerLoad = 5;
+  const allPagesToPassDown = allPages.map((x) => ({
+    ...x,
+    // eager image loading, only when current page is already loaded && page is adjacent to the current page
+    eager:
+      isCurrentPageLoaded &&
+      Math.abs(currentPageNum - x.pageNum) <= adjacentPagesToEagerLoad,
+  }));
 
   console.log(
     "Carousel",
@@ -70,7 +72,7 @@ export function Carousel(props: Props) {
       <CarouselPages
         currentPageNum={currentPageNum}
         onPageLoaded={onPageLoaded}
-        images={props.initialAllPages}
+        images={allPagesToPassDown}
       />
       <div className={styles.buttons}>
         <PrevButton

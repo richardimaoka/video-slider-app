@@ -2,51 +2,51 @@
   {
     "pageNum": 1,
     "id": "3563f391-da35-405a-b507-124cd2def557",
-    "imageUrl": "http://localhost:8199/images/background (1).png"
+    "imageUrl": "/images/background (1).png"
   },
   {
     "pageNum": 2,
     "id": "2b8bc340-e0c6-4123-b34c-115d4650826b",
-    "imageUrl": "http://localhost:8199/images/background (2).png"
+    "imageUrl": "/images/background (2).png"
   },
   {
     "pageNum": 3,
     "id": "19a00ef9-4dfa-4821-b75f-71de092a6180",
-    "imageUrl": "http://localhost:8199/images/background (3).png"
+    "imageUrl": "/images/background (3).png"
   },
   {
     "pageNum": 4,
     "id": "5a9ae4ea-dd64-4666-98c7-1b75dce44188",
-    "imageUrl": "http://localhost:8199/images/background (4).png"
+    "imageUrl": "/images/background (4).png"
   },
   {
     "pageNum": 5,
     "id": "fba5e97d-6210-44e5-b39a-e7b571771fc4",
-    "imageUrl": "http://localhost:8199/images/background (5).png"
+    "imageUrl": "/images/background (5).png"
   },
   {
     "pageNum": 6,
     "id": "6a385ee2-59db-4543-819a-8824d9d003eb",
-    "imageUrl": "http://localhost:8199/images/background (6).png"
+    "imageUrl": "/images/background (6).png"
   },
   {
     "pageNum": 7,
     "id": "9a6bf7c8-98cb-4caa-bc8c-771f0f162a41",
-    "imageUrl": "http://localhost:8199/images/background (7).png"
+    "imageUrl": "/images/background (7).png"
   },
   {
     "pageNum": 8,
     "id": "70567a10-1e05-4130-b22b-c4abd4dbd68a",
-    "imageUrl": "http://localhost:8199/images/background (8).png"
+    "imageUrl": "/images/background (8).png"
   },
   {
     "pageNum": 9,
     "id": "fef959d6-f764-4909-a8ca-6e13ad8dce80",
-    "imageUrl": "http://localhost:8199/images/background (9).png"
+    "imageUrl": "/images/background (9).png"
   },
   {
     "pageNum": 10,
     "id": "dd9c3fba-e304-4ee4-9c36-3dcda82d4069",
-    "imageUrl": "http://localhost:8199/images/background (10).png"
+    "imageUrl": "/images/background (10).png"
   }
 ]

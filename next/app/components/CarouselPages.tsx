@@ -3,7 +3,7 @@ import styles from "./CarouselPages.module.css";
 import { CarouselSinglePage } from "./CarouselSinglePage";
 
 type SlidePageState = SlidePage & {
-  eager?: boolean;
+  eager: boolean;
 };
 
 interface Props {
