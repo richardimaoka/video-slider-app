@@ -21,7 +21,6 @@ export function CarouselSinglePage(props: Props) {
     props.onPageLoaded(props.pageNum);
   }
 
-  console.log(props);
   return (
     <div className={styles.component} ref={ref}>
       {isLoaded && (

@@ -60,12 +60,12 @@ export function Carousel(props: Props) {
       Math.abs(currentPageNum - x.pageNum) <= adjacentPagesToEagerLoad,
   }));
 
-  console.log(
-    "Carousel",
-    isCurrentPageLoaded,
-    currentPageNum,
-    allPagesToPassDown
-  );
+  // console.log(
+  //   "Carousel",
+  //   isCurrentPageLoaded,
+  //   currentPageNum,
+  //   allPagesToPassDown
+  // );
 
   return (
     <div className={styles.component}>

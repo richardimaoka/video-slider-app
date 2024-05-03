@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import styles from "./PrevButton.module.css";
+import styles from "./PrevButton.module.css";
 
 interface Props {
   prevPath: string;
@@ -23,7 +21,7 @@ export function PrevButton(props: Props) {
 
     props.onPrevPage();
   }
-  
+
   // Should only run once, to handle onClick purely on client-side (i.e.) DO NOT send anything to the server.
   useEffect(
     () => {
@@ -35,13 +33,14 @@ export function PrevButton(props: Props) {
     []
   );
 
-  function a() {}
   return isLoading ? (
     <Link href={props.prevPath}>
-      <button type="button">prev</button>
+      <button className={styles.component} type="button">
+        prev
+      </button>
     </Link>
   ) : (
-    <button type="button" onClick={onClick}>
+    <button className={styles.component} type="button" onClick={onClick}>
       prev
     </button>
   );

@@ -34,10 +34,12 @@ export function NextButton(props: Props) {
 
   return isLoading ? (
     <Link href={props.nextPath}>
-      <button type="button">next</button>
+      <button className={styles.component} type="button">
+        next
+      </button>
     </Link>
   ) : (
-    <button type="button" onClick={onClick}>
+    <button className={styles.component} type="button" onClick={onClick}>
       next
     </button>
   );

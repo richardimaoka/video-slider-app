@@ -1,12 +1,13 @@
 .component {
   /* centering */
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  /* sizing */
-  width: 1080px;
+  height: 100svh;
 }
 
-.slider {
-  display: flex;
-  column-gap: 50px;
+.inner {
+  /* sizing */
+  width: 95%;
 }

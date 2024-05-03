@@ -1,0 +1,15 @@
+.component {
+  /* reset */
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none;
+
+  background-color: #ff6600;
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  margin-top: 20px;
+}

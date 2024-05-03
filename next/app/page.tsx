@@ -20,12 +20,8 @@ async function getCurrentPage(pageNum: number) {
   return page;
 }
 
-function extendPages(pages: SlidePage[], currentPageNum: number) {
-  return pages.map((page, i) => ({
-    ...page,
-    priority: i === currentPageNum - 1,
-    isLoaded: false,
-  }));
+function extendPages(pages: SlidePage[]) {
+  return pages.map((page) => ({ ...page, isLoaded: false }));
 }
 
 interface Props {
@@ -33,7 +29,6 @@ interface Props {
 }
 
 export default async function Page(props: Props) {
-  console.log("rendering Page");
   // Validate the search param
   let pageNum = Number(props.searchParams.page);
   if (isNaN(pageNum)) {
@@ -42,10 +37,7 @@ export default async function Page(props: Props) {
     pageNum = 1;
   }
 
-  console.log(`rendering ${pageNum}`);
-
   const pages = await getPages().catch((error) => {
-    console.log("error upon page rendering");
     console.log(error);
     return new Error("internal error happened");
   });
@@ -54,7 +46,6 @@ export default async function Page(props: Props) {
   }
 
   const currentPage = await getCurrentPage(pageNum).catch((error) => {
-    console.log("error upon page rendering");
     console.log(error);
     return new Error("internal error happened");
   });
@@ -62,14 +53,16 @@ export default async function Page(props: Props) {
     throw new Error("error from getCurrentPage()");
   }
 
-  const extendedPages = extendPages(pages, currentPage.pageNum);
+  const extendedPages = extendPages(pages);
 
   return (
     <div className={styles.component}>
-      <Carousel
-        initialPageNum={currentPage.pageNum}
-        initialAllPages={extendedPages}
-      />
+      <div className={styles.inner}>
+        <Carousel
+          initialPageNum={currentPage.pageNum}
+          initialAllPages={extendedPages}
+        />
+      </div>
     </div>
   );
 }
