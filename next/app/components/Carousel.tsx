@@ -60,14 +60,6 @@ export function Carousel(props: Props) {
       Math.abs(currentPageNum - x.pageNum) <= adjacentPagesToEagerLoad,
   }));
 
-  // console.log(
-  //   "Carousel",
-  //   isCurrentPageLoaded,
-  //   currentPageNum,
-  //   allPagesToPassDown
-  // );
-
-  console.log("hasPrevPage = ", hasPrevPage);
   return (
     <div>
       <CarouselSlider
