@@ -6,7 +6,7 @@ type Props = {
   pageNum: number;
   imagePath: string;
   priority: boolean;
-  eager: boolean;
+  eager?: boolean;
   onPageLoaded: (pageNum: number) => void;
 };
 
