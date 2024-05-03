@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import styles from "./CarouselSinglePage.module.css";
+import styles from "./CarouselPage.module.css";
 import Image from "next/image";
 
 type Props = {
@@ -10,9 +10,7 @@ type Props = {
   onPageLoaded: (pageNum: number) => void;
 };
 
-export type CarouselSinglePageProps = Props;
-
-export function CarouselSinglePage(props: Props) {
+export function CarouselPage(props: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

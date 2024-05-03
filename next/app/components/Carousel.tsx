@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { SlidePage } from "../api/types";
 import styles from "./Carousel.module.css";
-import { CarouselPages } from "./CarouselPages";
+import { CarouselSlider } from "./CarouselSlider";
 import { NextButton } from "./NextButton";
 import { PrevButton } from "./PrevButton";
 
@@ -67,9 +67,10 @@ export function Carousel(props: Props) {
   //   allPagesToPassDown
   // );
 
+  console.log("hasPrevPage = ", hasPrevPage);
   return (
-    <div className={styles.component}>
-      <CarouselPages
+    <div>
+      <CarouselSlider
         currentPageNum={currentPageNum}
         onPageLoaded={onPageLoaded}
         images={allPagesToPassDown}

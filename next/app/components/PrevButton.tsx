@@ -12,6 +12,9 @@ interface Props {
 
 export function PrevButton(props: Props) {
   const [isLoading, setIsLoading] = useState(true);
+  const buttonStyle = props.disabled
+    ? `${styles.component} ${styles.disabled}`
+    : `${styles.component} ${styles.enabled}`;
 
   function onClick() {
     // https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#using-the-native-history-api
@@ -35,12 +38,17 @@ export function PrevButton(props: Props) {
 
   return isLoading ? (
     <Link href={props.prevPath}>
-      <button className={styles.component} type="button">
+      <button className={buttonStyle} type="button" disabled={props.disabled}>
         prev
       </button>
     </Link>
   ) : (
-    <button className={styles.component} type="button" onClick={onClick}>
+    <button
+      className={buttonStyle}
+      type="button"
+      disabled={props.disabled}
+      onClick={onClick}
+    >
       prev
     </button>
   );
