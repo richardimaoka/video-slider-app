@@ -11,21 +11,14 @@ type Props = {
 };
 
 export function CarouselPage(props: Props) {
-  const [isLoaded, setIsLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   function onLoad() {
-    setIsLoaded(true);
     props.onPageLoaded(props.pageNum);
   }
 
   return (
     <div className={styles.component} ref={ref}>
-      {isLoaded && (
-        <div className={styles.numberContainer}>
-          <div className={styles.number}>{props.pageNum}</div>
-        </div>
-      )}
       <Image
         className={styles.image}
         src={props.imagePath}
