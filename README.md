@@ -1,3 +1,5 @@
+## How to run
+
 ```
 git clone https://github.com/richardimaoka/video-slider-app.git
 
@@ -8,6 +10,8 @@ pnpm run dev
 ```
 
 As the terminal output says, go to http://localhost:3000
+
+## Source code
 
 - `next/app/page.tsx` main page
 - `next/app/components/Carousel.tsx` - main component and state management to check `if image(page) N is loaded?`
